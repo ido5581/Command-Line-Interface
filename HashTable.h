@@ -20,6 +20,7 @@ void printAllElements(HashTable* HT);
 int get(HashTable* HT, char* key);
 void freeHashTable(HashTable* HT);
 void removeNode(HashTable* HT, char* key);
+void clearTable(HashTable* HT);
 
 
 #endif

@@ -94,3 +94,17 @@ void removeNode(HashTable* HT, char* key){
     temp->next = temp->next->next;
     freeNode(del);
 }
+void clearTable(HashTable* HT){
+    if(HT == NULL) return;
+    Node* temp1 = NULL;
+    Node* temp2 = NULL;
+    for(int i = 0; i<SIZE; i++){
+        temp1 = HT->dataMap[i];
+        while(temp1 != NULL){
+            temp2 = temp1;
+            temp1 = temp1->next;
+            freeNode(temp2);
+        }
+        HT->dataMap[i] = NULL;
+    }
+}

@@ -1,8 +1,16 @@
+#include <windows.h>
 #include "CLI.h"
+#include "HashTable.h"
+#include "SnapShot.h"
 
 FILE *fh_output;
 
+
+
 void run(HashTable* HT){
+    
+    readFromBin(HT);
+    
     char input[256];
     FILE* fh_input = fopen("io.txt","r");
     if(fh_input!= NULL){
@@ -94,15 +102,57 @@ void run(HashTable* HT){
 
             else if (strcmp(command, "EXIT") == 0){
                 printf("Bye");
+                writeToBin(HT);
                 break;
             }
 
             else if (strcmp(command, "PRINT") == 0){
                 printAllElements(HT);
             }
+            else if (strcmp(command, "CLEAR") == 0){
+                clearTable(HT);
+                FILE* fh_clear = fopen("io.txt","w");
+                FILE* file = fopen("snapshot.bin","wb");
+                if(fh_clear!= NULL ){
+                    fclose(fh_clear);
+                    printf("DB cleared");
+                }
+                if(file != NULL) fclose(file);
+            }
             else{
                 printf("Unknown input\n");
                 continue;
             }
         }
+        
+        
+    }
+void writeToBin(HashTable* HT){
+    FILE* file = fopen("snapshot.bin","wb");
+    if(file == NULL) return;
+    for(int i = 0; i < SIZE; i++){
+        Node* temp = HT->dataMap[i];
+        while(temp != NULL){
+            SnapShotElement element;
+            strcpy(element.key,temp->key);
+            element.value = temp->value;
+            
+            fwrite(&element,sizeof(SnapShotElement),1 ,file);
+    
+            temp = temp->next;
+        }
+        fopen("io.txt","w");
+    }
+    fclose(file);
+}
+
+void readFromBin(HashTable* HT){
+    FILE* file = fopen("snapshot.bin","rb");
+    if(file == NULL) return;
+    SnapShotElement element;
+    while(fread(&element, sizeof(SnapShotElement),1,file) == 1){
+        
+        upsert(HT,element.key, element.value);
+    }
+    fclose(file);
 }

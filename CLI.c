@@ -5,8 +5,6 @@
 
 FILE *fh_output;
 
-
-
 void run(HashTable* HT){
     
     readFromBin(HT);

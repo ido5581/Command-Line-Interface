@@ -45,10 +45,11 @@ void run(HashTable* HT){
     }
         
         printf("Welcome to my Hashtable,\n"
-            "enter SET, key(string) and a value(number) in order to insert elements\n"
-        "enter GET and its key in order to retrieve a key\n"
-        "enter DEL and a key in order to delete it\n"
-        "enter PRINT in order to print all the elements you entered\n");
+        "enter SET, key(string) and a value(number) in order to insert an element\n"
+        "enter GET and its key in order to retrieve its value\n"
+        "enter DEL and a key in order to delete the element\n"
+        "enter PRINT in order to print all the elements you entered\n"
+        "enter CLEAR in order to reset the table\n");
         while(1){
             printf("----------------------------------------\n");
             printf(">");

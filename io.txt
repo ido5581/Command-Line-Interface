@@ -1,0 +1,10 @@
+SET ido 123
+SET leo 789
+SET ido 456
+DEL ido
+DEL leo
+SET barak 5
+DEL barak
+SET Shani 1811
+DEL Shani
+SET ido 456

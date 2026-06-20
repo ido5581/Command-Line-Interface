@@ -1,6 +1,0 @@
-*השורות האלו אומרות ל-Git להתעלם לחלוטין מקבצי ההרצה, מקובץ ה-`snapshot.bin` ומכל מה שנמצא בתיקיית ה-`build`.*
-
-
-חזור לחלון ה-PowerShell שלך (איפה שכתוב `PS C:\Users\Eran\Desktop\Ido\coding\CLI\Command-Line-Interface>`) והרץ:
-```powershell
-git status
